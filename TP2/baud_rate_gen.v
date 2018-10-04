@@ -3,14 +3,16 @@
 module baud_rate_gen(
     input clk,
     input reset,
-    input reg baud_rate,
+    //input reg baud_rate,
     output reg tick
 );
 
 
+parameter baud_rate = 9600;
 parameter clk_value = 100 * 1000000;
 parameter num_ticks = 16;
 parameter counter_length = 32;
+
 
 reg count_to[counter_length - 1 : 0] = clk_value / (baud_rate * num_ticks)
 reg counter[counter_length - 1 : 0] = 0;
