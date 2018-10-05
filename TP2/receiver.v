@@ -83,17 +83,17 @@ end
 always @(*)
 begin
 	 /* Initial values */
-	 	sb_ticks <= stop_bits * NUM_TICKS;
+	 	sb_ticks = stop_bits * NUM_TICKS;
 		if( parity == 1 )
-			data_length <= 9;
+			data_length = 9;
 		else
-         data_length <= 8;
+         data_length = 8;
     /* Next State Logic */
     case(state)
         IDLE: 
             if (~rx)
             begin
-                next_state <= START;
+                next_state = START;
                 s = 0;
             end
         START:
@@ -103,7 +103,7 @@ begin
                 begin
                     s = 0;
                     n = 0;
-                    next_state <= DATA;
+                    next_state = DATA;
                 end
                 else
                     s = s + 1;
@@ -116,7 +116,7 @@ begin
                     s = 0;
                     buffer = {rx, buffer[7 : 1]}; //Enviar dato. Que esta pasando aca. REVISAR!!! Necesito otro buffer? d_out podria ser output reg?
                     if( n == data_length - 1 )
-                        next_state <= STOP;
+                        next_state = STOP;
                     else
                         n = n + 1;
                 end
@@ -129,7 +129,7 @@ begin
                 if(s == sb_ticks - 1)
                 begin
                     rx_done = 1'b1;
-                    next_state <= IDLE;
+                    next_state = IDLE;
                 end
                 else    
                     s = s + 1;
@@ -141,12 +141,12 @@ begin
 				n = 0;
 				buffer = 0;
 				rx_done = 0;
-				next_state <= IDLE;
+				next_state = IDLE;
 				
 			end
 			default:
 			begin
-				next_state <= RESET;
+				next_state = RESET;
          end
     endcase
 end

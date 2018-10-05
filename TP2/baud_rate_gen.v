@@ -17,7 +17,7 @@ parameter counter_length = 32;
 reg count_to[counter_length - 1 : 0] = clk_value / (baud_rate * num_ticks)
 reg counter[counter_length - 1 : 0] = 0;
 
-always @(posedge clk)
+always @(posedge clk or posedge reset)
 begin
     if(reset)
         begin
