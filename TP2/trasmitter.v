@@ -24,7 +24,7 @@ module ttx(
     clk,
     tick,
     parity,
-	stop_bits,
+	 stop_bits,
     d_in,
     tx_done,
     tx_out
@@ -39,7 +39,10 @@ for(clog2 = 0; value > 0; clog2 = clog2 + 1)
 value = value >> 1;
 end
 endfunction
-
+parameter NUM_TICKS = 16;
+parameter LENGTH_NUM_TICKS = clog2(NUM_TICKS);
+parameter LENGTH_MAX_DATA  = clog2(9);
+parameter BITS_PER_DATA = 8;
 input reset;
 input tx_start;
 input clk;
@@ -50,10 +53,7 @@ input [BITS_PER_DATA - 1 : 0] d_in;
 output reg tx_done = 0;
 output reg tx_out = 0;
 
-parameter NUM_TICKS = 16;
-parameter LENGTH_NUM_TICKS = clog2(NUM_TICKS);
-parameter LENGTH_MAX_DATA  = clog2(9);
-parameter BITS_PER_DATA = 8;
+
 
 /* States */
 localparam [5:0]IDLE    =  6'b000001;
@@ -63,15 +63,15 @@ localparam [5:0]PARITY  =  6'b001000;
 localparam [5:0]STOP 	=  6'b010000;
 localparam [5:0]RESET 	=  6'b100000;
 
-reg [4 : 0] state = IDLE;
-reg [4 : 0] next_state = IDLE;
+reg [5 : 0] state = IDLE;
+reg [5 : 0] next_state = IDLE;
 reg [LENGTH_MAX_DATA  - 1 : 0] data_length;
 reg [LENGTH_NUM_TICKS - 1 : 0] s, n;
 reg [BITS_PER_DATA - 1 : 0] buffer = 0;
 reg [5 : 0]sb_ticks = 6'b000000;
 reg parity_bit = 0;
 
-assign tx_out = buffer;
+//assign tx_out = buffer;
 
 /* State Machine */
 always @(posedge clk or posedge reset)
@@ -90,17 +90,19 @@ begin
     /* Next State Logic */
     case(state)
         IDLE:
+			begin
             tx_out = 1;
             if (~tx_start)
             begin
                 next_state = START;
                 s = 0;
             end
+			end
         START:
             if(tick)
+				begin
             tx_out = 0;
             buffer = d_in;
-            begin
                 if(s == NUM_TICKS - 1)
                 begin
                     s = 0;
@@ -113,11 +115,11 @@ begin
         DATA:
             if (tick)
             begin
-                tx_out = buffer[0]
+                tx_out = buffer[0];
                 if(s == NUM_TICKS - 1)
                 begin
                     s = 0;
-                    if( n == data_length - 1 )
+                    if( n == 7 )
                         if(parity == 1)
                             next_state = PARITY;
                         else
@@ -175,3 +177,4 @@ begin
 end
 
 endmodule
+
