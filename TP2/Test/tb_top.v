@@ -37,29 +37,42 @@ module tb_int;
 		.rx(rx), 
 		.tx(tx)
 	);
-	integer clock;
+	
 	initial begin
 		// Initialize Inputs
-		clock = 0;
-		rx = 1;
+	clock = 0;
+	rx = 1;
+	
+	//Data 1
+	#5 rx = 0; //Start;
+	#15 rx = 1; //Bit 1;
+	#20 rx = 0;	//Bit 2;
+	#145 rx = 1;
+	#25;
+	
+	//Data 2
+	#5 rx = 0; //Start;
+	#15 rx = 1; //Bit 1 and Bit 2;
+	#45 rx = 0;
+	#120 rx = 1;
+	#25;
+	
+	//Opcode
+	#5 rx = 0; //Start;
+	#124 rx = 1;
+	#24 rx = 0;
+	#32 rx = 1;
+	#25;
+	
+	
+	#250 $stop;
 
-		// Wait 100 ns for global reset to finish
-		for(clock = 0; clock < 20; clock = clock + 1)
-		begin
-		clock = ~clock;
-		#0.1;
-		end
-		
-        
-		// Add stimulus here
-		rx = 0;
-		for(clock = 0; clock < 1000*1000; clock = clock + 1)
-		begin
-		clock = ~clock;
-		#0.1;
-		end
-		
-	end
+	
+	end	
+       	
+	always
+	#0.001 clock = ~clock;
+	//Baud rate = 163
       
 endmodule
 

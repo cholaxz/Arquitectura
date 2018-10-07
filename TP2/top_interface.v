@@ -19,7 +19,9 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module top_interface #(SIZE = 8)(
-		input clock,input rx, output reg tx
+		input clock,
+		input rx, 
+		output tx
     );
 wire [7:0]drx;
 wire rx_done;
@@ -29,27 +31,33 @@ wire tx_start;
 wire [7: 0] a;
 wire [7: 0] b;
 wire [7: 0] op;
+wire[7:0] alu_res;
 wire reset_rx;
 wire reset_tx;
-wire alu_res;
 wire tick;
+wire error;
 reg parity = 0;
-reg stop_bits = 1;
-reg reset = 0;
+reg[1:0] stop_bits = 1;
+
 
 interface in(
-.reset(reset),
+.reset(0),
 .d_in(drx),
 .alu_res(alu_res),
 .rx_done(rx_done),
 .tx_done(tx_done),
+.clk(clock),
 .tx_start(tx_start),
-.a(a),.b(b),.op(op),.reset_rx(reset_rx),.reset_tx(reset_tx),.d_out(dtx),.clk(clock));
+.d_out(dtx),
+.a(a),
+.b(b),
+.op(op)
+);
 
 ALU al(.busA(a),.busB(b),.op(op),.salida(alu_res));
 
 ttx txhola(
-		.reset(reset_tx), 
+		.reset(0), 
 		.tx_start(tx_start), 
 		.clk(clock), 
 		.tick(tick), 
@@ -59,14 +67,15 @@ ttx txhola(
 		.tx_done(tx_done), 
 		.tx_out(tx));
 rrx rxhola(
-		.reset(reset_rx),
+		.reset(0),
 		.rx(rx), 
 		.clk(clock), 
 		.tick(tick), 
 		.parity(parity), 
 		.stop_bits(stop_bits),
 		.d_out(drx), 
-		.rx_done(rx_done)
+		.rx_done(rx_done),
+		.error(error)
 );
 
 baud_rate_gen bd(

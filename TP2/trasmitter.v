@@ -92,8 +92,8 @@ begin
         IDLE:
 			begin
             tx_out = 1;
-            tx_done = 0;
-            if (~tx_start)
+				tx_done = 0;
+            if (tx_start)
             begin
                 next_state = START;
                 s = 0;
@@ -178,4 +178,3 @@ begin
 end
 
 endmodule
-

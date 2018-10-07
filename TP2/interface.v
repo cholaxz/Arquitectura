@@ -41,9 +41,11 @@ module interface #(parameter SIZE = 8)
 	 localparam [ 6 : 0 ]CHECK = 7'b0100000;
 	 localparam [ 6 : 0 ]RESET = 7'b1000000;
 	 
+	 
 	 initial a = 0;
 	 initial b = 0;
 	 initial op = 0;
+	 initial tx_start = 0;
 	 reg [6 : 0] state = IDLE;
 	 reg [6 : 0] next_state = IDLE;
 	 reg [2 : 0] count = 0;
@@ -103,8 +105,10 @@ case(state)
 			tx_start = 1;
 			if(tx_done)
 				begin
+				tx_start = 0;
 				next_state = RESET;
-				end
+			end
+				
 			end
 		RESET:
 			begin
