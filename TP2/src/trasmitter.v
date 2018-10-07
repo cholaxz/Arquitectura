@@ -92,7 +92,7 @@ begin
         IDLE:
 			begin
             tx_out = 1;
-				tx_done = 0;
+			tx_done = 0;
             if (tx_start)
             begin
                 next_state = START;
