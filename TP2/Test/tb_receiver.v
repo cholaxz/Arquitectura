@@ -4,9 +4,9 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   14:14:59 10/04/2018
+// Create Date:   14:30:14 10/07/2018
 // Design Name:   rrx
-// Module Name:   /home/agustin/tp2/tb_rrx.v
+// Module Name:   /home/agustin/tp2/tb_rrx_new.v
 // Project Name:  tp2
 // Target Device:  
 // Tool versions:  
@@ -22,113 +22,73 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module tb_rrx;
+module tb_rrx_new;
 
 	// Inputs
 	reg reset;
 	reg rx;
 	reg clk;
 	reg tick;
-	reg parity;
-	reg[1:0] stop_bits;
+	reg parity ;
+	reg [1:0] stop_bits;
 
 	// Outputs
 	wire [7:0] d_out;
 	wire rx_done;
+	wire error;
 
 	// Instantiate the Unit Under Test (UUT)
 	rrx uut (
-		.reset(reset),
+		.reset(reset), 
 		.rx(rx), 
 		.clk(clk), 
 		.tick(tick), 
 		.parity(parity), 
-		.stop_bits(stop_bits),
+		.stop_bits(stop_bits), 
 		.d_out(d_out), 
-		.rx_done(rx_done)
+		.rx_done(rx_done), 
+		.error(error)
 	);
 
-	integer data, clock, ticks, index, data_length;
+	integer data;
 	initial begin
 		// Initialize Inputs
-		reset=0;
+		reset = 0;
 		rx = 1;
 		clk = 0;
 		tick = 0;
 		parity = 1;
-		stop_bits = 2'b01;
-		
-		data_length = 8 + parity;
-
-		// Wait 100 ns for global reset to finish
-		#1;
-		
+		stop_bits = 1;
+        
+		#10;
+		// Add stimulus here
 		//IDLE
-		rx=0;
-		#1;
-		clk=1;
-		#1;
-		clk=0;
-		#1;
+		#10 rx = 0;
 		//START
-		for(index = 0; index < 16; index = index + 1)
-		begin
-		tick = ~tick;
-		for(clock = 0; clock < 10; clock = clock + 1 )
-		begin
-		clk = ~clk;
-		#0.1;
-		end
-		end
+		#16;
 		//DATA
-		for(data = 0; data < data_length; data = data + 1)
+		for(data = 0; data < 8; data = data + 1)
 		begin
-			rx = ~rx;
-			for (ticks = 0; ticks < 32; ticks = ticks + 1)
-			begin
-				tick = ~tick;
-				for(clock = 0; clock < 10; clock = clock + 1)
-				begin
-				#0.1;
-				clk = ~clk;
-				end
-			end
-			
+		#32 rx = ~rx;
 		end
-		//STOP
-		for(index = 0; index < 32; index = index + 1)
-		begin
-		tick = ~tick;
-		for(clock = 0; clock < 10; clock = clock + 1 )
-		begin
-		clk = ~clk;
-		#0.1;
-		end
-		end
-		
-		//FINISH
-		for(clock = 0; clock < 10; clock = clock + 1)
-		begin
-		clk = ~clk;
-		#0.1;
-		end
+		//PARITY
 		rx = 1;
-		reset=1;
-		for(clock = 0; clock < 10; clock = clock + 1)
-		begin
-		clk = ~clk;
-		#0.1;
-		end
+		#32
+		//STOP
+		rx = 1;
+		#32;
+		//IDLE
+		#10;
 		
-		reset = 0;
-		for(clock = 0; clock < 10; clock = clock + 1)
-		begin
-		clk = ~clk;
-		#0.1;
-		end
-		
+		#5 $stop;
 	end
 	
+	always begin
+		#0.1 clk = ~clk;
+	end
+	always begin
+		#1 tick = ~tick;
+	end
       
 endmodule
 

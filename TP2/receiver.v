@@ -26,7 +26,8 @@ module rrx(
     parity,
 	 stop_bits,
     d_out,
-    rx_done
+    rx_done,
+	 error
     );
 
 
@@ -52,20 +53,22 @@ input tick;
 input[1:0] stop_bits;
 output [BITS_PER_DATA - 1 : 0] d_out; /* Cual es la diferencia con usar assign? */
 output reg rx_done = 0;
+output reg error = 0;
 
 /* States */
-localparam [4:0]IDLE    =  5'b00001;
-localparam [4:0]START   =  5'b00010;
-localparam [4:0]DATA    =  5'b00100;
-localparam [4:0]STOP    =  5'b01000;
-localparam [4:0]RESET 	= 	5'b10000;
+localparam [5:0]IDLE    =  6'b000001;
+localparam [5:0]START   =  6'b000010;
+localparam [5:0]DATA    =  6'b000100;
+localparam [5:0]STOP    =  6'b001000;
+localparam [5:0]RESET 	= 	6'b010000;
+localparam [5:0]PARITY 	= 	6'b100000;
 
-reg [4 : 0] state = IDLE;
-reg [4 : 0] next_state = IDLE;
-reg [LENGTH_MAX_DATA  - 1 : 0] data_length;
+reg [5 : 0] state = IDLE;
+reg [5 : 0] next_state = IDLE;
 reg [LENGTH_NUM_TICKS - 1 : 0] s, n; /* Check this */
-reg [BITS_PER_DATA - 1: 0] buffer = 0;
+reg [BITS_PER_DATA : 0] buffer = 0;
 reg [5 : 0]sb_ticks = 6'b000000;
+reg expected_parity;
 
 assign d_out = buffer;
 
@@ -83,19 +86,21 @@ end
 always @(*)
 begin
 	 /* Initial values */
-	 	sb_ticks = stop_bits * NUM_TICKS;
-		if( parity == 1 )
-			data_length = 9;
-		else
-         data_length = 8;
+	 sb_ticks <= stop_bits * NUM_TICKS;
     /* Next State Logic */
     case(state)
-        IDLE: 
+        IDLE:
+			begin
+			rx_done = 0;
+			error = 0;
             if (~rx)
             begin
+					 error = 0;
                 next_state = START;
                 s = 0;
+					 buffer = 0;
             end
+			end
         START:
             if(tick)
             begin
@@ -115,14 +120,33 @@ begin
                 begin
                     s = 0;
                     buffer = {rx, buffer[7 : 1]}; //Enviar dato. Que esta pasando aca. REVISAR!!! Necesito otro buffer? d_out podria ser output reg?
-                    if( n == data_length - 1 )
-                        next_state = STOP;
+                    if( n == BITS_PER_DATA - 1 )
+								if(parity == 1)
+									next_state = PARITY;
+								else
+									next_state = STOP;
                     else
                         n = n + 1;
                 end
                 else
                     s = s + 1;
             end
+		  PARITY: 
+			if(tick)
+			begin
+				if(s == 15)
+				begin
+					expected_parity = buffer[0] + buffer[1] + buffer[2] + buffer[3] + buffer[4] + buffer[5] + buffer[6] + buffer[7];
+					if (~ (expected_parity == rx))
+						error = 1;
+					s = 0;
+					next_state = STOP;
+				end
+				else
+					s = s + 1;
+			end
+				
+			
         STOP:
             if(tick)
             begin
@@ -141,9 +165,10 @@ begin
 				n = 0;
 				buffer = 0;
 				rx_done = 0;
+				error = 0;
 				next_state = IDLE;
-				
 			end
+			
 			default:
 			begin
 				next_state = RESET;
