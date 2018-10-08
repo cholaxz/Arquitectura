@@ -20,7 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 module data_memory#(
 	parameter ADDR_LENGTH = 11,
-	parameter DATA_LENGTH = 16
+	parameter DATA_LENGTH = 16,
+	parameter data = "/home/agustin/Desktop/Arquitectura/TP3/code/data.bin"
 )(
 	input clk,
 	input [1:0]WrRd,
@@ -29,11 +30,25 @@ module data_memory#(
 	output reg[DATA_LENGTH - 1 : 0] outData
    );
 	
-	parameter MEM_SIZE = 2 ^ ADDR_LENGTH ;
-	reg [ADDR_LENGTH - 1 : 0]memory[0 : MEM_SIZE];
+	localparam MEM_SIZE = 2 ^ ADDR_LENGTH ;
+	reg [DATA_LENGTH - 1 : 0]memory[0 : MEM_SIZE];
 	
 	localparam WRITE 	= 2'b10;
 	localparam READ 	= 2'b01;
+	
+
+initial begin
+if(data != "")
+	$readmemb(data, memory);
+else
+	begin
+		memory[0] = 16'b0000000000000000; 
+		memory[1] = 16'b0000000000000001; 
+		memory[2] = 16'b0000000000000010; 
+		memory[3] = 16'b0000000000000011; 
+	end
+end
+
 
 always @(negedge clk)
 begin

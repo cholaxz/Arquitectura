@@ -19,19 +19,41 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module program_memory#(
-	parameter ADDR_LENGTH = 11
+	parameter ADDR_LENGTH = 11,
+	parameter DATA_LENGTH = 16,
+	parameter program = "/home/agustin/Desktop/Arquitectura/TP3/code/program.bin"
 )(
 	input clk,
 	input [ADDR_LENGTH - 1 : 0]addr,
-	output reg[ADDR_LENGTH - 1 : 0] instruction
+	input Wr,
+	input[DATA_LENGTH - 1 : 0] inData,
+	output reg[DATA_LENGTH - 1 : 0] instruction
    );
 	
-	parameter MEM_SIZE = 2 ^ ADDR_LENGTH ;
-	reg [ADDR_LENGTH - 1 : 0]memory[0 : MEM_SIZE];
+	localparam MEM_SIZE = 2 ^ ADDR_LENGTH ;
+	reg [DATA_LENGTH - 1 : 0]memory[0 : MEM_SIZE];
+	
+	
+	initial begin
+	if(program != "")
+		$readmemb(program, memory);
+	else
+		begin
+			memory[0] = 16'b0001000000000001; //Load Addr1
+			memory[1] = 16'b0010000000000010; //Add Acc + Addr2
+			memory[2] = 16'b0000100000000000; //Store Acc in Addr0
+			memory[3] = 16'b0000000000000000; //Halt
+		end
+	end
 
 always @(posedge clk)
 begin
-	instruction <= memory[addr];
+	if(Wr == 1)
+		memory[addr] <= inData;
+	else
+		instruction <= memory[addr];
 end
+
+
 
 endmodule

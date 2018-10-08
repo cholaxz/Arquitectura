@@ -1,1 +1,0 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/agustin/Desktop/Arquitectura/TP3/code/tb_cpu_isim_beh.exe" -prj "/home/agustin/Desktop/Arquitectura/TP3/code/tb_cpu_beh.prj" "work.tb_cpu" "work.glbl" 
