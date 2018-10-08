@@ -19,27 +19,48 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module control#(
-parameter addrLength = 11
+parameter addrLength = 11,
+parameter OPCODE_LENGTH = 5
 )(
 	input reset,
 	input clk,
-	output address
+	input [OPCODE_LENGTH - 1: 0] opcode,
+	output[addrLength - 1 : 0] address,
+	output [1:0]SelA,
+	output SelB,
+	output WrAcc,
+	output Op,
+	output WrRam,
+	output RdRam
     );
-	 
+
 wire [addrLength - 1 : 0]addr;
 wire [addrLength - 1 : 0]middle_addr;
-reg enable = 1;  //wire
+wire WrPC;
+
+assign address = addr;
+
+instruction_decoder decoder(
+.opcode(opcode),
+.WrPC(WrPC),
+.SelA(SelA),
+.SelB(SelB),
+.WrAcc(WrAcc),
+.Op(Op),
+.WrRam(WrRam),
+.RdRam(RdRam)
+);
 
 pc pc_module(
 .new_program_count(middle_addr),
-.enable(enable),
+.enable(WrPC),
 .clk(clk),
 .reset(reset),
 .program_count(addr)
 );
 
 adder adder_module(
-.value(1),
+.value(1'b1),
 .old_pc(addr),
 .new_pc(middle_addr)
 );

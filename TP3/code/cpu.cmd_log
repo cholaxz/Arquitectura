@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "/home/agustin/Desktop/Arquitectura/TP3/code/cpu.xst" -ofn "/home/agustin/Desktop/Arquitectura/TP3/code/cpu.syr" 

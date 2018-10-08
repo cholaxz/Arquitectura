@@ -24,17 +24,21 @@
 
 module tb_control;
 
+	parameter OPCODE_LENGTH = 5;
+	parameter ADDRESS_LENGTH = 11;
+
 	// Inputs
 	reg reset;
 	reg clk;
-
+	reg [OPCODE_LENGTH - 1: 0] opcode;
 	// Outputs
-	wire address;
+	wire [ADDRESS_LENGTH - 1 : 0]address;
 
 	// Instantiate the Unit Under Test (UUT)
 	control uut (
 		.reset(reset), 
 		.clk(clk), 
+		.opcode(opcode),
 		.address(address)
 	);
 
@@ -42,15 +46,20 @@ module tb_control;
 		// Initialize Inputs
 		reset = 0;
 		clk = 0;
-
+		opcode = 0;
+		
 		// Wait 10 ns for global reset to finish
-		#10
+		#5
 		// Add stimulus here		
+		#10 opcode = 1;
+		#10 opcode = 2;
+		#10 opcode = 3;
+		#10 opcode = 4;
 		
 		
 		
 		
-		#50 $stop;
+		#40 $stop;
 	end
 	
 	always

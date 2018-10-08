@@ -20,11 +20,11 @@
 //////////////////////////////////////////////////////////////////////////////////
 module instruction_decoder#(parameter OPCODE_LENGTH = 5)(
 	input[OPCODE_LENGTH - 1 : 0] opcode,
-	output reg WrPC,
+	output reg WrPC,	/* 0: Enable PC / 1: Not enable PC*/
 	output reg[1:0] SelA,
 	output reg SelB,
 	output reg WrAcc,
-	output reg Op,
+	output reg Op, 	/* 0: Sum / 1: Substraction */
 	output reg WrRam,
 	output reg RdRam
    );
@@ -39,34 +39,98 @@ localparam SUB 	= 5'b00110;
 localparam SUBI 	= 5'b00111;
 
 /* Combination Logic */
+/* No entiendo Sel A y Sel B */
 always @(*)
 case(opcode)
 	HLT:
 		begin
+			WrPC 	= 0;
+			SelA 	= 0;
+			SelB 	= 0;
+			WrAcc = 0;
+			Op 	= 0;
+			WrRam = 0;
+			RdRam = 0;
 		end
 	STO:
 		begin
+			WrPC 	= 1;
+			SelA 	= 0;
+			SelB 	= 0;
+			WrAcc = 0;
+			Op 	= 0;
+			WrRam = 1;
+			RdRam = 0;
 		end
 	LD:
 		begin
+			WrPC 	= 1;
+			SelA 	= 0;
+			SelB 	= 0;
+			WrAcc = 1;
+			Op 	= 0;
+			WrRam = 0;
+			RdRam = 1;
 		end
 	LDI:
 		begin
+			WrPC 	= 1;
+			SelA 	= 1;
+			SelB 	= 0;
+			WrAcc = 1;
+			Op 	= 0;
+			WrRam = 0;
+			RdRam = 0;
 		end
 	ADD:
 		begin
+			WrPC 	= 1;
+			SelA 	= 2;
+			SelB 	= 0;
+			WrAcc = 1;
+			Op 	= 0;
+			WrRam = 0;
+			RdRam = 1;
 		end
 	ADDI:
 		begin
+			WrPC 	= 1;
+			SelA 	= 2;
+			SelB 	= 1;
+			WrAcc = 1;
+			Op 	= 0;
+			WrRam = 0;
+			RdRam = 0;
 		end
 	SUB:
 		begin
+			WrPC 	= 1;
+			SelA 	= 2;
+			SelB 	= 0;
+			WrAcc = 1;
+			Op 	= 1;
+			WrRam = 0;
+			RdRam = 1;
 		end	
 	SUBI:
 		begin
+			WrPC 	= 1;
+			SelA 	= 2;
+			SelB 	= 1;
+			WrAcc = 1;
+			Op 	= 1;
+			WrRam = 0;
+			RdRam = 0;
 		end
 	default: //by default we halt
 		begin
+			WrPC = 0;
+			SelA = 0;
+			SelB = 0;
+			WrAcc = 0;
+			Op = 0;
+			WrRam = 0;
+			RdRam = 0;
 		end
 endcase
 endmodule

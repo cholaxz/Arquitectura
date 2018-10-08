@@ -31,9 +31,9 @@ parameter LENGTH = 11
 	 
 	initial program_count = 0;
 	
-	always@(posedge clk, posedge reset)
+	always@(negedge clk) //antes era pos edge
 	begin
-	if(reset)
+	if(reset)	//reset sincrono, antes era asincrono
 	begin
 		program_count = 0;
 	end
