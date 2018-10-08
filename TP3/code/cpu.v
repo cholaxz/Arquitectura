@@ -30,7 +30,7 @@ module cpu#(
 	input [INSTRUCTION_LENGTH - 1 : 0]instruction,
 	input [DATA_LENGTH - 1 : 0]data_from_dm,
 	output [DATA_LENGTH - 1 : 0]data_to_dm,
-	output [DATA_LENGTH - 1 : 0]addr_to_pm,
+	output [ADDR_LENGTH - 1 : 0]addr_to_pm,
 	output [ADDR_LENGTH - 1 : 0]addr_to_dm,
 	output RdRam,
 	output WrRam

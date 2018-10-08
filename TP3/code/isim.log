@@ -1,5 +1,5 @@
 ISim log file
-Running: /home/agustin/Desktop/Arquitectura/TP3/code/tb_datapath_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/agustin/Desktop/Arquitectura/TP3/code/tb_datapath_isim_beh.wdb 
+Running: /home/agustin/Desktop/Arquitectura/TP3/code/tb_cpu_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/agustin/Desktop/Arquitectura/TP3/code/tb_cpu_isim_beh.wdb 
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -11,5 +11,5 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-Stopped at time : 70 ns :  in File "/home/agustin/Desktop/Arquitectura/TP3/code/tb_datapath.v" Line 85 
+Stopped at time : 100 ns :  in File "/home/agustin/Desktop/Arquitectura/TP3/code/tb_cpu.v" Line 80 
 # exit 0

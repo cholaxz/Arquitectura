@@ -22,20 +22,25 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module tb_cpu;
+module tb_cpu; 
 
 	// Inputs
 	reg clk;
 	reg reset;
-	reg [15:0] instruction;
+	reg [4:0]opcode;
+	reg [10:0]operand;
+	wire [15:0]instruction;
 	reg [15:0] data_from_dm;
 
 	// Outputs
 	wire [15:0] data_to_dm;
-	wire [15:0] addr_to_pm;
+	wire [10:0] addr_to_pm;
 	wire [10:0] addr_to_dm;
 	wire RdRam;
 	wire WrRam;
+
+	assign instruction[15:11] = opcode;
+	assign instruction[10:0] = operand;
 
 	// Instantiate the Unit Under Test (UUT)
 	cpu uut (
@@ -54,15 +59,30 @@ module tb_cpu;
 		// Initialize Inputs
 		clk = 0;
 		reset = 0;
-		instruction = 0;
+		opcode = 0;
+		operand = 0;
 		data_from_dm = 0;
 
 		// Wait 100 ns for global reset to finish
-		#100;
-        
-		// Add stimulus here
+		#10;
+		#10 opcode = 2; data_from_dm = 2; //Load
+		#10 opcode = 4; data_from_dm = 8;	//Add 
+		#10 opcode = 1; data_from_dm = 2;	//Store
+		
+		#10 opcode = 0; data_from_dm = 2; //Halt
+		
+		#10 opcode = 3; operand = 10; //Load Imm
+		#10 opcode = 7; operand = 6; //Sub Imm
+		#10 opcode = 1; operand = 2;	//Store
+		
+		#10 opcode = 0; data_from_dm = 2; //Halt
+		
+		#10 $stop;
 
 	end
+	
+	always
+		#5 clk = ~clk;
       
 endmodule
 
