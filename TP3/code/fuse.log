@@ -1,0 +1,27 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/agustin/Documents/Practicos/tp3/tp3/tb_control_isim_beh.exe -prj /home/agustin/Documents/Practicos/tp3/tp3/tb_control_beh.prj work.tb_control work.glbl 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "/home/agustin/Documents/Practicos/tp3/tp3/pc.v" into library work
+Analyzing Verilog file "/home/agustin/Documents/Practicos/tp3/tp3/adder.v" into library work
+Analyzing Verilog file "/home/agustin/Documents/Practicos/tp3/tp3/control.v" into library work
+Analyzing Verilog file "/home/agustin/Documents/Practicos/tp3/tp3/tb_control.v" into library work
+Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:189 - "/home/agustin/Documents/Practicos/tp3/tp3/control.v" Line 42: Size mismatch in connection of port <value>. Formal port size is 1-bit while actual signal size is 32-bit.
+Completed static elaboration
+Fuse Memory Usage: 94672 KB
+Fuse CPU Usage: 1150 ms
+Compiling module pc
+Compiling module adder
+Compiling module control
+Compiling module tb_control
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 5 Verilog Units
+Built simulation executable /home/agustin/Documents/Practicos/tp3/tp3/tb_control_isim_beh.exe
+Fuse Memory Usage: 654864 KB
+Fuse CPU Usage: 1170 ms
+GCC CPU Usage: 450 ms
