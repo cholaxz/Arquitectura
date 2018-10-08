@@ -8,16 +8,18 @@
       <ClosedNodes>
          <ClosedNodesVersion>2</ClosedNodesVersion>
          <ClosedNode>/control |home|agustin|Desktop|Arquitectura|TP3|code|control.v</ClosedNode>
+         <ClosedNode>/cpu |home|agustin|Desktop|Arquitectura|TP3|code|cpu.v/control - control</ClosedNode>
+         <ClosedNode>/cpu |home|agustin|Desktop|Arquitectura|TP3|code|cpu.v/datapath - datapath</ClosedNode>
          <ClosedNode>/datapath |home|agustin|Desktop|Arquitectura|TP3|code|datapath.v</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>datapath (/home/agustin/Desktop/Arquitectura/TP3/code/datapath.v)</SelectedItem>
+         <SelectedItem>cpu (/home/agustin/Desktop/Arquitectura/TP3/code/cpu.v)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000000d2000000020000000000000000000000000200000064ffffffff000000810000000300000002000000d20000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000146000000020000000000000000000000000200000064ffffffff000000810000000300000002000001460000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>datapath (/home/agustin/Desktop/Arquitectura/TP3/code/datapath.v)</CurrentItem>
+      <CurrentItem>cpu (/home/agustin/Desktop/Arquitectura/TP3/code/cpu.v)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -90,16 +92,17 @@
          <ClosedNodesVersion>2</ClosedNodesVersion>
          <ClosedNode>/tb_control |home|agustin|Desktop|Arquitectura|TP3|code|tb_control.v</ClosedNode>
          <ClosedNode>/tb_control |home|agustin|Documents|Practicos|tp3|tp3|tb_control.v</ClosedNode>
+         <ClosedNode>/tb_cpu |home|agustin|Desktop|Arquitectura|TP3|code|tb_cpu.v</ClosedNode>
          <ClosedNode>/tb_datapath |home|agustin|Desktop|Arquitectura|TP3|code|tb_datapath.v</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>tb_datapath (/home/agustin/Desktop/Arquitectura/TP3/code/tb_datapath.v)</SelectedItem>
+         <SelectedItem>tb_cpu (/home/agustin/Desktop/Arquitectura/TP3/code/tb_cpu.v)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000000fa000000020000000000000000000000000200000064ffffffff000000810000000300000002000000fa0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>tb_datapath (/home/agustin/Desktop/Arquitectura/TP3/code/tb_datapath.v)</CurrentItem>
+      <CurrentItem>tb_cpu (/home/agustin/Desktop/Arquitectura/TP3/code/tb_cpu.v)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -120,14 +123,14 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem>Simulate Behavioral Model</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000013c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000013c0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem>Simulate Behavioral Model</CurrentItem>
    </ItemView>
    <SourceProcessView>000000ff00000000000000020000014c0000011d01000000060100000002</SourceProcessView>
-   <CurrentView>Behavioral Simulation</CurrentView>
+   <CurrentView>Implementation</CurrentView>
 </Project>
