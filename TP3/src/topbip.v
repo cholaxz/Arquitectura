@@ -18,29 +18,33 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module topbip(
-	input reset,
-	input clk
+module topbip#(
+	parameter DATA_LENGTH = 16,
+	parameter ADDR_LENGTH = 11
+)(
+	input reset_bip,
+	input clk,
+	input WrPM,
+	input WrDM,
+	input RdDM,
+	input [15 : 0]dataFromInterface,
+	input [10 : 0]addrFromInterface,
+	output [DATA_LENGTH - 1 : 0]data_from_dm
    );
-	
-	parameter ADDR_LENGTH = 11;
-	parameter DATA_LENGTH = 16;
-	
 	
 	wire [ADDR_LENGTH - 1 : 0]addr_to_pm;
 	wire [ADDR_LENGTH - 1 : 0]addr_to_dm;
 	wire [DATA_LENGTH - 1 : 0]data_from_pm;
-	wire [DATA_LENGTH - 1 : 0]data_from_dm;
 	wire [DATA_LENGTH - 1 : 0]data_to_dm;
-	wire [1:0]WrRd;
+	wire [1:0]WrRdDM;
 	wire WrRam;
 	wire RdRam;
+	assign WrRdDM[1] = WrRam | WrDM;
+	assign WrRdDM[0] = RdRam | RdDM;
 	
-	assign WrRd = {WrRam, RdRam};
-
 	cpu cpu(
 	.clk(clk),
-	.reset(reset),
+	.reset(reset_bip),
 	.instruction(data_from_pm),
 	.data_from_dm(data_from_dm),
 	.data_to_dm(data_to_dm),
@@ -50,19 +54,29 @@ module topbip(
 	.WrRam(WrRam)
 	);
 	
+	wire [ADDR_LENGTH - 1 : 0]inAddrPM;
+	assign inAddrPM = WrPM ? addrFromInterface : addr_to_pm;
+	
 	program_memory pm(
 	.clk(clk),
-	.addr(addr_to_pm),
+	.addr(inAddrPM),
 	.instruction(data_from_pm),
-	.inData(0),
-	.Wr(0)
+	.inData(dataFromInterface),
+	.Wr(WrPM)
 	);
+	
+	
+	wire [DATA_LENGTH - 1 : 0]inDataDM;
+	wire [ADDR_LENGTH - 1 : 0]inAddrDM;
+	
+	assign inDataDM =  WrDM ? dataFromInterface : data_to_dm;
+	assign inAddrDM =  WrDM ? addrFromInterface : addr_to_dm;
 	
 	data_memory dm(
 	.clk(clk),
-	.WrRd(WrRd),
-	.addr(addr_to_dm),
-	.inData(data_to_dm),
+	.WrRd(WrRdDM),
+	.addr(inAddrDM),
+	.inData(inDataDM),
 	.outData(data_from_dm)
 	);
 
