@@ -1,0 +1,6 @@
+verilog work "transmitter.v"
+verilog work "receiver.v"
+verilog work "baud_rate_gen.v"
+verilog work "uart.v"
+verilog work "simple.v"
+verilog work "top.v"
