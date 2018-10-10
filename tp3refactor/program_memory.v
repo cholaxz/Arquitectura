@@ -24,9 +24,10 @@ module program_memory#(
 	parameter program = ""
 )(
 	input clk,
-	input [ADDR_LENGTH - 1 : 0]addr,
+	input [ADDR_LENGTH - 1 : 0]addrFromBip,
+	input [ADDR_LENGTH - 1 : 0]addrFromInterface,
 	input Wr,
-	input[DATA_LENGTH - 1 : 0] inData,
+	input[DATA_LENGTH - 1 : 0] dataFromInterface,
 	output reg[DATA_LENGTH - 1 : 0] instruction
    );
 	
@@ -39,7 +40,8 @@ module program_memory#(
 		$readmemb(program, memory);
 	else
 		begin
-			memory[0] = 16'b0001000000000001; //Load Addr1
+			//memory[0] = 16'b0001000000000001; //Load Addr1
+			memory[0] = 16'b0000000000000000;
 			memory[1] = 16'b0010000000000010; //Add Acc + Addr2
 			memory[2] = 16'b0000100000000000; //Store Acc in Addr0
 			memory[3] = 16'b0000000000000000; //Halt
@@ -49,11 +51,9 @@ module program_memory#(
 always @(posedge clk)
 begin
 	if(Wr == 1)
-		memory[addr] <= inData;
+		memory[addrFromInterface] <= dataFromInterface;
 	else
-		instruction <= memory[addr];
+		instruction <= memory[addrFromBip];
 end
-
-
 
 endmodule

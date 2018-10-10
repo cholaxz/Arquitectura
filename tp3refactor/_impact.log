@@ -1,12 +1,10 @@
 iMPACT Version: 14.7
 
-iMPACT log file Started on Wed Oct 10 10:07:56 2018
+iMPACT log file Started on Wed Oct 10 12:23:23 2018
 
 Welcome to iMPACT
 iMPACT Version: 14.7
-Project: '/home/agustin/tp2//auto_project.ipf' already exists.
-Original project has been renamed to '/home/agustin/tp2//auto_project_1.ipf'.
-Project: /home/agustin/tp2//auto_project.ipf created.
+Project: /home/ALU//auto_project.ipf created.
 // *** BATCH CMD : setMode -bs
 GUI --- Auto connect to cable...
 // *** BATCH CMD : setCable -port auto
@@ -19,25 +17,25 @@ INFO:iMPACT - Digilent Plugin: Firmware Version: BAF7
 INFO:iMPACT - Digilent Plugin: JTAG Port Number: 0
 INFO:iMPACT - Digilent Plugin: JTAG Clock Frequency: 4000000 Hz
 Attempting to identify devices in the boundary-scan chain configuration...
-INFO:iMPACT - Current time: 10/10/18 10:07
+INFO:iMPACT - Current time: 10/10/18 12:23
 // *** BATCH CMD : Identify -inferir 
 PROGRESS_START - Starting Operation.
 Identifying chain contents...'0': : Manufacturer's ID = Xilinx xcf02s, Version : 15
 INFO:iMPACT:1777 - 
-   Reading /opt/Xilinx/14.7/ISE_DS/ISE/xcf/data/xcf02s.bsd...
+   Reading /home/nicolas/Xilinx/14.7/ISE_DS/ISE/xcf/data/xcf02s.bsd...
 INFO:iMPACT:501 - '1': Added Device xcf02s successfully.
 ----------------------------------------------------------------------
 '1': : Manufacturer's ID = Xilinx xc3s100e, Version : 1
 INFO:iMPACT:1777 - 
-   Reading /opt/Xilinx/14.7/ISE_DS/ISE/spartan3e/data/xc3s100e.bsd...
+   Reading /home/nicolas/Xilinx/14.7/ISE_DS/ISE/spartan3e/data/xc3s100e.bsd...
 INFO:iMPACT:501 - '1': Added Device xc3s100e successfully.
 ----------------------------------------------------------------------
 done.
 PROGRESS_END - End Operation.
 Elapsed time =      0 sec.
 // *** BATCH CMD : identifyMPM 
-// *** BATCH CMD : assignFile -p 1 -file "/home/agustin/tp3refactor/top.bit"
-'1': Loading file '/home/agustin/tp3refactor/top.bit' ...
+// *** BATCH CMD : assignFile -p 1 -file"/home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit"
+'1': Loading file '/home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit' ...
 done.
 INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
    but the original bitstream file remains unchanged.
@@ -45,14 +43,14 @@ UserID read from the bitstream file = 0xFFFFFFFF.
 ----------------------------------------------------------------------
 INFO:iMPACT:501 - '1': Added Device xc3s100e successfully.
 ----------------------------------------------------------------------
-INFO:iMPACT - Current time: 10/10/18 10:08
+INFO:iMPACT - Current time: 10/10/18 12:23
 // *** BATCH CMD : Program -p 1 
 Warning: Chain frequency (1000000) is less than the current cable speed(4000000).
  Adjust to cable speed (1000000).
-PROGRESS_START - Starting Operation.
 Maximum TCK operating frequency for this device chain: 1000000.
 Validating chain...
 Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
 '1': Programming device...
  LCK_cycle = NoWait.
 LCK cycle: NoWait
@@ -67,33 +65,7 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 10:18
-Updating config file /home/agustin/tp3refactor/top.bit...
-INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
-   but the original bitstream file remains unchanged.
-// *** BATCH CMD : Program -p 1 
-Maximum TCK operating frequency for this device chain: 1000000.
-Validating chain...
-PROGRESS_START - Starting Operation.
-Boundary-scan chain validated successfully.
-'1': Programming device...
- LCK_cycle = NoWait.
-LCK cycle: NoWait
-done.
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '1': Completed downloading bit file to device.
-INFO:iMPACT:188 - '1': Programming completed successfully.
- LCK_cycle = NoWait.
-LCK cycle: NoWait
-INFO:iMPACT - '1': Checking done pin....done.
-'1': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 10:20
-Updating config file /home/agustin/tp3refactor/top.bit...
-INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
-   but the original bitstream file remains unchanged.
+INFO:iMPACT - Current time: 10/10/18 12:31
 // *** BATCH CMD : Program -p 1 
 Maximum TCK operating frequency for this device chain: 1000000.
 Validating chain...
@@ -113,8 +85,8 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 10:26
-Updating config file /home/agustin/tp3refactor/top.bit...
+INFO:iMPACT - Current time: 10/10/18 12:45
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
 INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
    but the original bitstream file remains unchanged.
 // *** BATCH CMD : Program -p 1 
@@ -136,8 +108,8 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 10:30
-Updating config file /home/agustin/tp3refactor/top.bit...
+INFO:iMPACT - Current time: 10/10/18 12:47
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
 INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
    but the original bitstream file remains unchanged.
 // *** BATCH CMD : Program -p 1 
@@ -159,54 +131,8 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 10:33
-Updating config file /home/agustin/tp3refactor/top.bit...
-INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
-   but the original bitstream file remains unchanged.
-// *** BATCH CMD : Program -p 1 
-Maximum TCK operating frequency for this device chain: 1000000.
-Validating chain...
-PROGRESS_START - Starting Operation.
-Boundary-scan chain validated successfully.
-'1': Programming device...
- LCK_cycle = NoWait.
-LCK cycle: NoWait
-done.
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '1': Completed downloading bit file to device.
-INFO:iMPACT:188 - '1': Programming completed successfully.
- LCK_cycle = NoWait.
-LCK cycle: NoWait
-INFO:iMPACT - '1': Checking done pin....done.
-'1': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 10:41
-Updating config file /home/agustin/tp3refactor/top.bit...
-INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
-   but the original bitstream file remains unchanged.
-// *** BATCH CMD : Program -p 1 
-Maximum TCK operating frequency for this device chain: 1000000.
-Validating chain...
-Boundary-scan chain validated successfully.
-PROGRESS_START - Starting Operation.
-'1': Programming device...
- LCK_cycle = NoWait.
-LCK cycle: NoWait
-done.
-INFO:iMPACT:2219 - Status register values:
-INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
-INFO:iMPACT:579 - '1': Completed downloading bit file to device.
-INFO:iMPACT:188 - '1': Programming completed successfully.
- LCK_cycle = NoWait.
-LCK cycle: NoWait
-INFO:iMPACT - '1': Checking done pin....done.
-'1': Programmed successfully.
-PROGRESS_END - End Operation.
-Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 10:45
-Updating config file /home/agustin/tp3refactor/top.bit...
+INFO:iMPACT - Current time: 10/10/18 12:55
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
 INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
    but the original bitstream file remains unchanged.
 // *** BATCH CMD : Program -p 1 
@@ -228,8 +154,8 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      0 sec.
-INFO:iMPACT - Current time: 10/10/18 10:47
-Updating config file /home/agustin/tp3refactor/top.bit...
+INFO:iMPACT - Current time: 10/10/18 13:07
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
 INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
    but the original bitstream file remains unchanged.
 // *** BATCH CMD : Program -p 1 
@@ -251,8 +177,8 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 11:01
-Updating config file /home/agustin/tp3refactor/top.bit...
+INFO:iMPACT - Current time: 10/10/18 13:11
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
 INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
    but the original bitstream file remains unchanged.
 // *** BATCH CMD : Program -p 1 
@@ -274,8 +200,8 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 11:05
-Updating config file /home/agustin/tp3refactor/top.bit...
+INFO:iMPACT - Current time: 10/10/18 13:14
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
 INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
    but the original bitstream file remains unchanged.
 // *** BATCH CMD : Program -p 1 
@@ -297,8 +223,8 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      1 sec.
-INFO:iMPACT - Current time: 10/10/18 11:22
-Updating config file /home/agustin/tp3refactor/top.bit...
+INFO:iMPACT - Current time: 10/10/18 13:41
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
 INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
    but the original bitstream file remains unchanged.
 // *** BATCH CMD : Program -p 1 
@@ -320,31 +246,348 @@ INFO:iMPACT - '1': Checking done pin....done.
 '1': Programmed successfully.
 PROGRESS_END - End Operation.
 Elapsed time =      1 sec.
-Project: '/home/agustin/tp2//auto_project.ipf' created.
-// *** BATCH CMD : setMode -bs
-// *** BATCH CMD : setMode -ss
-// *** BATCH CMD : setMode -sm
-// *** BATCH CMD : setMode -hw140
-// *** BATCH CMD : setMode -spi
-// *** BATCH CMD : setMode -acecf
-// *** BATCH CMD : setMode -acempm
-// *** BATCH CMD : setMode -pff
-// *** BATCH CMD : setMode -bs
-// *** BATCH CMD : saveProjectFile -file "/home/agustin/tp2//auto_project.ipf"
-INFO:iMPACT - User_EnvOsname: 'Ubuntu'
-INFO:iMPACT - User_EnvOsrelease: 'Ubuntu 16.04.4 LTS'
-// *** BATCH CMD : setMode -bs
-INFO:iMPACT - Launching WebTalk, please refer to the webtalk log at   /home/agustin/tp2/webtalk.log for details.
-INFO:iMPACT - Running wbtc successfully.
-// *** BATCH CMD : setMode -bs
-// *** BATCH CMD : deleteDevice -position 1
-----------------------------------------------------------------------
-// *** BATCH CMD : deleteDevice -position 1
-// *** BATCH CMD : setMode -bs
-// *** BATCH CMD : setMode -ss
-// *** BATCH CMD : setMode -sm
-// *** BATCH CMD : setMode -hw140
-// *** BATCH CMD : setMode -spi
-// *** BATCH CMD : setMode -acecf
-// *** BATCH CMD : setMode -acempm
-// *** BATCH CMD : setMode -pff
+INFO:iMPACT - Current time: 10/10/18 13:45
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 13:48
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 13:49
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 13:53
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 13:55
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+PROGRESS_START - Starting Operation.
+Boundary-scan chain validated successfully.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 13:57
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      0 sec.
+INFO:iMPACT - Current time: 10/10/18 14:01
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 14:05
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 14:07
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 14:12
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 14:14
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 14:22
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 14:34
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 14:46
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.
+INFO:iMPACT - Current time: 10/10/18 14:52
+Updating config file /home/nicolas/Git-Arqui/Arquitectura/tp3refactor/top.bit...
+INFO:iMPACT:2257 - Startup Clock has been changed to 'JtagClk' in the bitstream   stored in memory,
+   but the original bitstream file remains unchanged.
+// *** BATCH CMD : Program -p 1 
+Maximum TCK operating frequency for this device chain: 1000000.
+Validating chain...
+Boundary-scan chain validated successfully.
+PROGRESS_START - Starting Operation.
+'1': Programming device...
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+done.
+INFO:iMPACT:2219 - Status register values:
+INFO:iMPACT - 0011 0111 1011 1000 0000 0000 0000 0000 
+INFO:iMPACT:579 - '1': Completed downloading bit file to device.
+INFO:iMPACT:188 - '1': Programming completed successfully.
+ LCK_cycle = NoWait.
+LCK cycle: NoWait
+INFO:iMPACT - '1': Checking done pin....done.
+'1': Programmed successfully.
+PROGRESS_END - End Operation.
+Elapsed time =      1 sec.

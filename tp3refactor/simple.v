@@ -78,9 +78,11 @@ begin
 	reset_bip 	= 1;
 	RdDM 			= 0;
 	d_out 		= 0;
+	outAddr 		= 0;
+	outData 		= 0;
 end	 
 
-assign leds = state[7:0];
+assign leds = outData[15:8];
 	
 always @(posedge clk)
 begin
@@ -201,14 +203,13 @@ case(state)
 			begin
 				reset_bip <= 1;
 				RdDM <= 1;
-				data_to_send <= inData;
 				state <= SENDLSB;
 			end
 		SENDLSB:
 			begin
 				if(tx_start == 0)
 				begin
-					d_out <= data_to_send[7 : 0];
+					d_out <= inData[7 : 0];
 					//d_out <= 60;
 					//leds <= data_to_send[7:0];
 					reset_bip <= 1;
@@ -225,7 +226,7 @@ case(state)
 			begin
 				if(tx_done)
 				begin
-					d_out <= data_to_send[15:8];
+					d_out <= inData[15:8];
 					//d_out <= 70;
 					//leds <= data_to_send[15:8];
 					reset_bip <= 1;

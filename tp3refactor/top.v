@@ -52,7 +52,7 @@ interface interface(
 	.outData(interface_to_bip),
 	.outAddr(addrToMemory),
 	.d_out(interface_to_uart),
-	.leds(leds)
+	.leds()
     );
 
 uart uart(
@@ -75,7 +75,8 @@ topbip bip(
 	.RdDM(RdDM),
 	.dataFromInterface(interface_to_bip),
 	.addrFromInterface(addrToMemory),
-	.data_from_dm(bip_to_interface)
+	.data_from_dm(bip_to_interface),
+	.leds(leds)
    );
 
 endmodule

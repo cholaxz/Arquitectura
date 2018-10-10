@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-10-10T10:06:41</DateModified>
+  <DateModified>2018-10-10T12:22:04</DateModified>
   <ModuleName>top</ModuleName>
   <SummaryTimeStamp>2018-10-10T09:59:24</SummaryTimeStamp>
-  <SavedFilePath>/home/agustin/tp3refactor/iseconfig/top.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/agustin/tp3refactor/</ImplementationReportsDirectory>
+  <SavedFilePath>/home/nicolas/Git-Arqui/Arquitectura/tp3refactor/iseconfig/top.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/nicolas/Git-Arqui/Arquitectura/tp3refactor/</ImplementationReportsDirectory>
   <DateInitialized>2018-10-10T09:08:17</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
