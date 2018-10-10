@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Wed Oct 10 01:18:52 2018
+# Process ID: 12357
+# Log file: /home/agustin/uart/planAhead_run_3/planAhead.log
+# Journal file: /home/agustin/uart/planAhead_run_3/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/agustin/uart/pa.fromHdl.tcl
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin A7 [get_ports reset]
+endgroup
+save_constraints

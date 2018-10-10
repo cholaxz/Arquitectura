@@ -1,0 +1,40 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Tue Oct  9 23:07:35 2018
+# Process ID: 28793
+# Log file: /home/agustin/uart/planAhead_run_1/planAhead.log
+# Journal file: /home/agustin/uart/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/agustin/uart/pa.fromHdl.tcl
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin B6 [get_ports rx]
+endgroup
+startgroup
+set_property package_pin G1 [get_ports {leds[7]}]
+endgroup
+startgroup
+set_property package_pin P4 [get_ports {leds[6]}]
+endgroup
+set_property package_pin "" [get_ports [list  {leds[4]}]]
+startgroup
+set_property package_pin N4 [get_ports {leds[5]}]
+endgroup
+startgroup
+set_property package_pin N5 [get_ports {leds[4]}]
+endgroup
+startgroup
+set_property package_pin P6 [get_ports {leds[3]}]
+endgroup
+startgroup
+set_property package_pin P7 [get_ports {leds[2]}]
+endgroup
+startgroup
+set_property package_pin M11 [get_ports {leds[1]}]
+endgroup
+startgroup
+set_property package_pin M5 [get_ports {leds[0]}]
+endgroup
+save_constraints
