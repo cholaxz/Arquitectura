@@ -32,7 +32,7 @@ wire rx_done;
 wire [7:0]interface_to_uart;
 wire [7:0]uart_to_interface;
 //Del BIP
-reg [15:0] bip_to_interface = 0;
+wire [15:0] bip_to_interface;
 wire [15:0] interface_to_bip;
 wire [11:0] addrToMemory;
 wire WrPM, WrDM, RdDM, reset_bip;
@@ -65,5 +65,17 @@ uart uart(
 	.rx_done(rx_done),
 	.tx_done(tx_done)
     );
+
+/* Agrego parte de BIP */
+topbip bip(
+	.reset_bip(reset_bip),
+	.clk(clk),
+	.WrPM(WrPM),
+	.WrDM(WrDM),
+	.RdDM(RdDM),
+	.dataFromInterface(interface_to_bip),
+	.addrFromInterface(addrToMemory),
+	.data_from_dm(bip_to_interface)
+   );
 
 endmodule
