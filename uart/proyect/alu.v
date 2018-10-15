@@ -31,8 +31,8 @@ always @(*) begin
  6'b100100: salida = busA & busB;
  6'b100101: salida = busA | busB;
  6'b100110: salida = busA ^ busB;
- 6'b000011: salida = busA >> busB;
- 6'b000010: salida = busA << busB;
+ 6'b000011: salida = busA >>> busB;
+ 6'b000010: salida = busA >> busB;
  6'b100111: salida = ~(busA | busB);
  default: salida = 0;
  endcase
