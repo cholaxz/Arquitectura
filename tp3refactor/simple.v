@@ -26,6 +26,8 @@ parameter ADDR_LENGTH = 11
 		input reset,
 		input [SIZE-1:0] d_in,
 		input [DATA_LENGTH - 1 : 0]inData,
+		input [DATA_LENGTH - 1 : 0]inAcc,
+		input [DATA_LENGTH - 1 : 0]inPC,
 		input rx_done,
 		input tx_done,
 		input clk,
@@ -42,29 +44,32 @@ parameter ADDR_LENGTH = 11
     );
 	 
 	 //States
-	 localparam NUMBER_STATES = 11;
-	 localparam [ NUMBER_STATES - 1 : 0 ]IDLE 			= 10'b0000000001;
-	 localparam [ NUMBER_STATES - 1 : 0 ]DATALSB 		= 10'b0000000010;
-	 localparam [ NUMBER_STATES - 1 : 0 ]DATAMSB 		= 10'b0000000100;
-	 localparam [ NUMBER_STATES - 1 : 0 ]ADDRESSLSB 	= 10'b0000001000;
-	 localparam [ NUMBER_STATES - 1 : 0 ]ADDRESSMSB 	= 10'b0000010000;
-	 localparam [ NUMBER_STATES - 1 : 0 ]WRITE 			= 10'b0000100000;
-	 localparam [ NUMBER_STATES - 1 : 0 ]START 			= 10'b0001000000;
-	 localparam [ NUMBER_STATES - 1 : 0 ]READ 			= 10'b0010000000;
-	 localparam [ NUMBER_STATES - 1 : 0 ]SENDLSB 		= 10'b0100000000;
-	 localparam [ NUMBER_STATES - 1 : 0 ]SENDMSB 		= 10'b1000000000;
+	 localparam NUMBER_STATES = 12;
+	 localparam [ NUMBER_STATES - 1 : 0 ]IDLE 			= 12'b000000000001;
+	 localparam [ NUMBER_STATES - 1 : 0 ]DATALSB 		= 12'b000000000010;
+	 localparam [ NUMBER_STATES - 1 : 0 ]DATAMSB 		= 12'b000000000100;
+	 localparam [ NUMBER_STATES - 1 : 0 ]ADDRESSLSB 	= 12'b000000001000;
+	 localparam [ NUMBER_STATES - 1 : 0 ]ADDRESSMSB 	= 12'b000000010000;
+	 localparam [ NUMBER_STATES - 1 : 0 ]WRITE 			= 12'b000000100000;
+	 localparam [ NUMBER_STATES - 1 : 0 ]START 			= 12'b000001000000;
+	 localparam [ NUMBER_STATES - 1 : 0 ]READ 			= 12'b000010000000;
+	 localparam [ NUMBER_STATES - 1 : 0 ]SENDLSB 		= 12'b000100000000;
+	 localparam [ NUMBER_STATES - 1 : 0 ]SENDMSB 		= 12'b001000000000;
+	 localparam [ NUMBER_STATES - 1 : 0 ]SEND_ACC 		= 12'b010000000000;
+	 localparam [ NUMBER_STATES - 1 : 0 ]SEND_PC 		= 12'b100000000000;
 	 
 	 //Codes
 	 localparam[7:0] ST	= 8'b00000001;
 	 localparam[7:0] PM	= 8'b00000010;
 	 localparam[7:0] DM	= 8'b00000011;
 	 localparam[7:0] RE	= 8'b00000100;
-	 //localparam[7:0] RE	= 8'b00100000;
+	 localparam[7:0] TP	= 8'b00000101;
 	 	 
 	 reg [NUMBER_STATES - 1 : 0] state;
 	 reg [7 : 0] counter;
 	 reg [7:0] code;
 	 reg [DATA_LENGTH - 1 : 0] data_to_send;
+	 reg low = 1;
 
 initial
 begin
@@ -122,11 +127,53 @@ case(state)
 						state <= ADDRESSLSB;
 					RE:
 						state <= ADDRESSLSB;
+					TP:
+						state <= SEND_ACC;
 					default: 
 						state <= IDLE;
 				endcase
 			end
 			end
+		SEND_ACC:
+			begin
+			if(low == 1)
+				begin
+				d_out <= inAcc[7 : 0];
+				tx_start <= 1;
+				low <= 0;
+				end
+			else
+				begin
+				tx_start <= 0;
+				if(tx_done == 1)
+					begin
+					d_out <= inAcc[15:8];
+					tx_start <= 1;
+					low <= 1;
+					state <= SEND_PC;
+					end
+				end
+			end
+		SEND_PC:
+		begin
+			tx_start <= 0;
+			if(tx_done == 1)
+			begin
+			if(low == 1)
+				begin
+				d_out <= inPC[7 : 0];
+				tx_start <= 1;
+				low <= 0;
+				end
+			else
+				begin
+				d_out <= inPC[15 : 8];
+				tx_start <= 1;
+				low <= 1;
+				state <= IDLE;
+				end
+			end
+		end
 		ADDRESSLSB:
 			if(rx_done == 1)
 			begin
