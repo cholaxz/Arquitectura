@@ -35,11 +35,11 @@ parameter LENGTH = 11
 	begin
 	if(reset)	//reset sincrono, antes era asincrono
 	begin
-		program_count = 0;
+		program_count <= 0;
 	end
 	else 
 		if(enable)
-			program_count = new_program_count;
+			program_count <= new_program_count;
 	end
 
 endmodule

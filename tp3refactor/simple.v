@@ -243,7 +243,7 @@ case(state)
 				if(counter == 255)
 					begin
 					counter <= 0;
-					state <= IDLE;
+					state <= SEND_ACC;
 					end					
 			end
 		READ:

@@ -23,8 +23,9 @@ module top(
 	input clk,
 	input rx,
 	output tx,
-	output [7:0]leds
-    );
+	output [7:0]leds,
+	output [15:0]outPC
+   );
 	 
 wire tx_start;
 wire tx_done;
@@ -36,6 +37,9 @@ wire [15:0] bip_to_interface;
 wire [15:0] interface_to_bip;
 wire [11:0] addrToMemory;
 wire WrPM, WrDM, RdDM, reset_bip;
+wire[15:0] Acc;
+wire[15:0] PC;
+assign leds = Acc[7:0];
 
 interface interface(
 	.reset(reset),
@@ -52,7 +56,9 @@ interface interface(
 	.outData(interface_to_bip),
 	.outAddr(addrToMemory),
 	.d_out(interface_to_uart),
-	.leds()
+	.leds(),
+	.inAcc(Acc),
+	.inPC(PC)
     );
 
 uart uart(
@@ -76,7 +82,9 @@ topbip bip(
 	.dataFromInterface(interface_to_bip),
 	.addrFromInterface(addrToMemory),
 	.data_from_dm(bip_to_interface),
-	.leds(leds)
+	.leds(),
+	.outAcc(Acc),
+	.outPC(PC)
    );
 
 endmodule

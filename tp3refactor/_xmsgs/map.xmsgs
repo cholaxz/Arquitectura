@@ -5,15 +5,15 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">bip/pm/Mram_memory16/SPO</arg> has no load.
+<msg type="info" file="LIT" num="243" delta="old" >Logical network <arg fmt="%s" index="1">outPC&lt;15&gt;</arg> has no load.
 </msg>
 
-<msg type="info" file="LIT" num="395" delta="new" >The above <arg fmt="%s" index="1">info</arg> message is repeated <arg fmt="%d" index="2">15</arg> more times for the following (max. 5 shown):
-<arg fmt="%s" index="3">bip/pm/Mram_memory15/SPO,
-bip/pm/Mram_memory14/SPO,
-bip/pm/Mram_memory13/SPO,
-bip/pm/Mram_memory12/SPO,
-bip/pm/Mram_memory11/SPO</arg>
+<msg type="info" file="LIT" num="395" delta="old" >The above <arg fmt="%s" index="1">info</arg> message is repeated <arg fmt="%d" index="2">31</arg> more times for the following (max. 5 shown):
+<arg fmt="%s" index="3">outPC&lt;14&gt;,
+outPC&lt;13&gt;,
+outPC&lt;12&gt;,
+outPC&lt;11&gt;,
+outPC&lt;10&gt;</arg>
 To see the details of these <arg fmt="%s" index="4">info</arg> messages, please use the -detail switch.
 </msg>
 

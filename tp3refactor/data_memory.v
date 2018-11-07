@@ -34,7 +34,7 @@ module data_memory#(
    );
 	
 	localparam MEM_SIZE = 2 ^ ADDR_LENGTH ;
-	reg [DATA_LENGTH - 1 : 0]memory[0 : 9];
+	reg [DATA_LENGTH - 1 : 0]memory[0 : 5];
 	
 	localparam WRITE 	= 2'b10;
 	localparam READ 	= 2'b01;
@@ -59,6 +59,8 @@ initial begin
 		memory[1] = 2;
 		memory[2] = 3; 
 		memory[3] = 4; 
+		memory[4] = 0; 
+		memory[5] = 0; 
 end
 
 always @(negedge clk)

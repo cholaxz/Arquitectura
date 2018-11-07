@@ -32,19 +32,18 @@ module program_memory#(
    );
 	
 	localparam MEM_SIZE = 2 ^ ADDR_LENGTH ;
-	reg [DATA_LENGTH - 1 : 0]memory[0 : MEM_SIZE];
+	reg [DATA_LENGTH - 1 : 0]memory[0 : 5];
 	
 	
 	initial begin
-	if(program != "")
-		$readmemb(program, memory);
-	else
 		begin
-			//memory[0] = 16'b0001000000000001; //Load Addr1
-			memory[0] = 16'b0000000000000000;
+			memory[0] = 16'b0001100000000101; //LDI 5
 			memory[1] = 16'b0010000000000010; //Add Acc + Addr2
 			memory[2] = 16'b0000100000000000; //Store Acc in Addr0
 			memory[3] = 16'b0000000000000000; //Halt
+			memory[4] = 16'b0000000000000000; //Halt
+			memory[5] = 16'b0000000000000000; //Halt
+
 		end
 	end
 

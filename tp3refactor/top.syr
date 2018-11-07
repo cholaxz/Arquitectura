@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: top.prj
@@ -157,24 +157,27 @@ Analysis of file <"top.prj"> succeeded.
 Analyzing hierarchy for module <top> in library <work>.
 
 Analyzing hierarchy for module <interface> in library <work> with parameters.
-	ADDRESSLSB = "00000001000"
-	ADDRESSMSB = "00000010000"
+	ADDRESSLSB = "000000001000"
+	ADDRESSMSB = "000000010000"
 	ADDR_LENGTH = "00000000000000000000000000001011"
-	DATALSB = "00000000010"
-	DATAMSB = "00000000100"
+	DATALSB = "000000000010"
+	DATAMSB = "000000000100"
 	DATA_LENGTH = "00000000000000000000000000010000"
 	DM = "00000011"
-	IDLE = "00000000001"
-	NUMBER_STATES = "00000000000000000000000000001011"
+	IDLE = "000000000001"
+	NUMBER_STATES = "00000000000000000000000000001100"
 	PM = "00000010"
 	RE = "00000100"
-	READ = "00010000000"
-	SENDLSB = "00100000000"
-	SENDMSB = "01000000000"
+	READ = "000010000000"
+	SENDLSB = "000100000000"
+	SENDMSB = "001000000000"
+	SEND_ACC = "010000000000"
+	SEND_PC = "100000000000"
 	SIZE = "00000000000000000000000000001000"
 	ST = "00000001"
-	START = "00001000000"
-	WRITE = "00000100000"
+	START = "000001000000"
+	TP = "00000101"
+	WRITE = "000000100000"
 
 Analyzing hierarchy for module <uart> in library <work> with parameters.
 	parity = "0"
@@ -293,24 +296,27 @@ Analyzing top module <top>.
 Module <top> is correct for synthesis.
  
 Analyzing module <interface> in library <work>.
-	ADDRESSLSB = 11'b00000001000
-	ADDRESSMSB = 11'b00000010000
+	ADDRESSLSB = 12'b000000001000
+	ADDRESSMSB = 12'b000000010000
 	ADDR_LENGTH = 32'sb00000000000000000000000000001011
-	DATALSB = 11'b00000000010
-	DATAMSB = 11'b00000000100
+	DATALSB = 12'b000000000010
+	DATAMSB = 12'b000000000100
 	DATA_LENGTH = 32'sb00000000000000000000000000010000
 	DM = 8'b00000011
-	IDLE = 11'b00000000001
-	NUMBER_STATES = 32'sb00000000000000000000000000001011
+	IDLE = 12'b000000000001
+	NUMBER_STATES = 32'sb00000000000000000000000000001100
 	PM = 8'b00000010
 	RE = 8'b00000100
-	READ = 11'b00010000000
-	SENDLSB = 11'b00100000000
-	SENDMSB = 11'b01000000000
+	READ = 12'b000010000000
+	SENDLSB = 12'b000100000000
+	SENDMSB = 12'b001000000000
+	SEND_ACC = 12'b010000000000
+	SEND_PC = 12'b100000000000
 	SIZE = 32'sb00000000000000000000000000001000
 	ST = 8'b00000001
-	START = 11'b00001000000
-	WRITE = 11'b00000100000
+	START = 12'b000001000000
+	TP = 8'b00000101
+	WRITE = 12'b000000100000
 Module <interface> is correct for synthesis.
  
 Analyzing module <uart> in library <work>.
@@ -429,7 +435,6 @@ Analyzing module <program_memory> in library <work>.
 	DATA_LENGTH = 32'sb00000000000000000000000000010000
 	MEM_SIZE = 32'sb00000000000000000000000000001001
 	program = ""
-WARNING:Xst:2319 - "program_memory.v" line 44: Signal memory in initial block is partially initialized. The initialization will be ignored.
 INFO:Xst:1433 - Contents of array <memory> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
 INFO:Xst:1433 - Contents of array <memory> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
 Module <program_memory> is correct for synthesis.
@@ -441,7 +446,6 @@ Analyzing module <data_memory> in library <work>.
 	READ = 2'b01
 	WRITE = 2'b10
 	data = ""
-WARNING:Xst:2319 - "data_memory.v" line 58: Signal memory in initial block is partially initialized. The initialization will be ignored.
 Module <data_memory> is correct for synthesis.
  
 
@@ -457,15 +461,15 @@ Synthesizing Unit <interface>.
 WARNING:Xst:646 - Signal <data_to_send> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
-    | States             | 10                                             |
-    | Transitions        | 26                                             |
-    | Inputs             | 11                                             |
-    | Outputs            | 11                                             |
+    | States             | 12                                             |
+    | Transitions        | 33                                             |
+    | Inputs             | 13                                             |
+    | Outputs            | 13                                             |
     | Clock              | clk                       (rising_edge)        |
     | Reset              | reset                     (positive)           |
     | Reset type         | synchronous                                    |
-    | Reset State        | 00000000001                                    |
-    | Power Up State     | 00000000001                                    |
+    | Reset State        | 000000000001                                   |
+    | Power Up State     | 000000000001                                   |
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
@@ -479,10 +483,11 @@ WARNING:Xst:646 - Signal <data_to_send> is assigned but never used. This unconne
     Found 1-bit register for signal <reset_bip>.
     Found 8-bit register for signal <code>.
     Found 8-bit register for signal <counter>.
-    Found 8-bit adder for signal <counter$addsub0000> created at line 195.
+    Found 8-bit adder for signal <counter$addsub0000> created at line 242.
+    Found 1-bit register for signal <low>.
     Summary:
 	inferred   1 Finite State Machine(s).
-	inferred  56 D-type flip-flop(s).
+	inferred  57 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
 Unit <interface> synthesized.
 
@@ -576,9 +581,9 @@ Unit <receiver> synthesized.
 
 Synthesizing Unit <program_memory>.
     Related source file is "program_memory.v".
-WARNING:Xst:647 - Input <addrFromBip<10:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <addrFromInterface<10:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-    Found 10x16-bit dual-port RAM <Mram_memory> for signal <memory>.
+WARNING:Xst:647 - Input <addrFromBip<10:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <addrFromInterface<10:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 6x16-bit dual-port RAM <Mram_memory> for signal <memory>.
     Found 16-bit register for signal <instruction>.
     Summary:
 	inferred   1 RAM(s).
@@ -588,12 +593,12 @@ Unit <program_memory> synthesized.
 
 Synthesizing Unit <data_memory>.
     Related source file is "data_memory.v".
-WARNING:Xst:647 - Input <addr_from_bip<10:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <addr_from_interface<10:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <addr_from_bip<10:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <addr_from_interface<10:3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 16-bit register for signal <outData>.
-    Found 160-bit register for signal <memory>.
+    Found 96-bit register for signal <memory>.
     Summary:
-	inferred 176 D-type flip-flop(s).
+	inferred 112 D-type flip-flop(s).
 	inferred  32 Multiplexer(s).
 Unit <data_memory> synthesized.
 
@@ -683,6 +688,7 @@ Unit <topbip> synthesized.
 
 Synthesizing Unit <top>.
     Related source file is "top.v".
+WARNING:Xst:1306 - Output <outPC> is never assigned.
 WARNING:Xst:646 - Signal <addrToMemory<11>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <top> synthesized.
 
@@ -693,7 +699,7 @@ HDL Synthesis Report
 
 Macro Statistics
 # RAMs                                                 : 1
- 10x16-bit dual-port RAM                               : 1
+ 6x16-bit dual-port RAM                                : 1
 # Adders/Subtractors                                   : 21
  1-bit adder                                           : 14
  11-bit adder                                          : 1
@@ -702,16 +708,16 @@ Macro Statistics
  8-bit adder                                           : 1
 # Counters                                             : 1
  32-bit up counter                                     : 1
-# Registers                                            : 62
- 1-bit register                                        : 39
+# Registers                                            : 59
+ 1-bit register                                        : 40
  11-bit register                                       : 1
- 16-bit register                                       : 13
+ 16-bit register                                       : 9
  4-bit register                                        : 4
  8-bit register                                        : 4
  9-bit register                                        : 1
 # Multiplexers                                         : 3
- 16-bit 10-to-1 multiplexer                            : 2
  16-bit 4-to-1 multiplexer                             : 1
+ 16-bit 6-to-1 multiplexer                             : 2
 # Xors                                                 : 1
  1-bit xor2                                            : 1
 
@@ -746,21 +752,23 @@ Optimizing FSM <uart/txx/state/FSM> on signal <state[1:2]> with gray encoding.
  100000 | unreached
 --------------------
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <interface/state/FSM> on signal <state[1:10]> with one-hot encoding.
----------------------------
- State       | Encoding
----------------------------
- 00000000001 | 0000000001
- 00001000000 | 0000000010
- 00000001000 | 0000000100
- 00000010000 | 0000001000
- 00010000000 | 0000010000
- 00000000010 | 0000100000
- 00000000100 | 0001000000
- 00000100000 | 0010000000
- 00100000000 | 0100000000
- 01000000000 | 1000000000
----------------------------
+Optimizing FSM <interface/state/FSM> on signal <state[1:12]> with user encoding.
+------------------------------
+ State        | Encoding
+------------------------------
+ 000000000001 | 000000000001
+ 000001000000 | 000001000000
+ 000000001000 | 000000001000
+ 010000000000 | 010000000000
+ 100000000000 | 100000000000
+ 000000010000 | 000000010000
+ 000010000000 | 000010000000
+ 000000000010 | 000000000010
+ 000000000100 | 000000000100
+ 000000100000 | 000000100000
+ 000100000000 | 000100000000
+ 001000000000 | 001000000000
+------------------------------
 WARNING:Xst:2677 - Node <buffer_8> of sequential type is unconnected in block <rxx>.
 
 Synthesizing (advanced) Unit <program_memory>.
@@ -769,14 +777,14 @@ INFO:Xst:3231 - The small RAM <Mram_memory> will be implemented on LUTs in order
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
-    |     aspect ratio   | 10-word x 16-bit                    |          |
+    |     aspect ratio   | 6-word x 16-bit                     |          |
     |     clkA           | connected to signal <clk>           | rise     |
     |     weA            | connected to signal <Wr>            | high     |
     |     addrA          | connected to signal <addrFromInterface> |          |
     |     diA            | connected to signal <dataFromInterface> |          |
     -----------------------------------------------------------------------
     | Port B                                                              |
-    |     aspect ratio   | 10-word x 16-bit                    |          |
+    |     aspect ratio   | 6-word x 16-bit                     |          |
     |     addrB          | connected to signal <addrFromBip>   |          |
     |     doB            | connected to internal node          |          |
     -----------------------------------------------------------------------
@@ -789,7 +797,7 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # FSMs                                                 : 3
 # RAMs                                                 : 1
- 10x16-bit dual-port distributed RAM                   : 1
+ 6x16-bit dual-port distributed RAM                    : 1
 # Adders/Subtractors                                   : 11
  1-bit adder                                           : 1
  1-bit adder carry in                                  : 3
@@ -799,10 +807,10 @@ Macro Statistics
  8-bit adder                                           : 1
 # Counters                                             : 1
  32-bit up counter                                     : 1
-# Registers                                            : 313
- Flip-Flops                                            : 313
+# Registers                                            : 250
+ Flip-Flops                                            : 250
 # Multiplexers                                         : 33
- 1-bit 10-to-1 multiplexer                             : 32
+ 1-bit 6-to-1 multiplexer                              : 32
  16-bit 4-to-1 multiplexer                             : 1
 # Xors                                                 : 1
  1-bit xor2                                            : 1
@@ -837,21 +845,15 @@ Optimizing unit <accumulator> ...
 WARNING:Xst:2677 - Node <interface/outAddr_8> of sequential type is unconnected in block <top>.
 WARNING:Xst:2677 - Node <interface/outAddr_9> of sequential type is unconnected in block <top>.
 WARNING:Xst:2677 - Node <interface/outAddr_10> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <interface/outAddr_5> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <interface/outAddr_6> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <interface/outAddr_3> of sequential type is unconnected in block <top>.
 WARNING:Xst:2677 - Node <interface/outAddr_4> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <interface/outAddr_6> of sequential type is unconnected in block <top>.
 WARNING:Xst:2677 - Node <interface/outAddr_7> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <bip/cpu/control/pc_module/program_count_10> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <bip/cpu/control/pc_module/program_count_9> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <bip/cpu/control/pc_module/program_count_8> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <bip/cpu/control/pc_module/program_count_7> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <bip/cpu/control/pc_module/program_count_6> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <bip/cpu/control/pc_module/program_count_5> of sequential type is unconnected in block <top>.
-WARNING:Xst:2677 - Node <bip/cpu/control/pc_module/program_count_4> of sequential type is unconnected in block <top>.
+WARNING:Xst:2677 - Node <interface/outAddr_5> of sequential type is unconnected in block <top>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 42.
+Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 37.
 
 Final Macro Processing ...
 
@@ -859,8 +861,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 342
- Flip-Flops                                            : 342
+# Registers                                            : 287
+ Flip-Flops                                            : 287
 
 =========================================================================
 
@@ -886,33 +888,32 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 12
+# IOs                              : 28
 
 Cell Usage :
-# BELS                             : 932
+# BELS                             : 794
 #      GND                         : 1
 #      INV                         : 7
-#      LUT1                        : 34
-#      LUT2                        : 20
-#      LUT2_D                      : 1
-#      LUT3                        : 385
-#      LUT3_D                      : 1
+#      LUT1                        : 41
+#      LUT2                        : 26
+#      LUT2_D                      : 2
+#      LUT3                        : 257
+#      LUT3_D                      : 2
 #      LUT3_L                      : 32
-#      LUT4                        : 207
-#      LUT4_D                      : 12
-#      MUXCY                       : 57
-#      MUXF5                       : 90
-#      MUXF6                       : 32
+#      LUT4                        : 233
+#      LUT4_D                      : 6
+#      MUXCY                       : 64
+#      MUXF5                       : 63
 #      VCC                         : 1
-#      XORCY                       : 52
-# FlipFlops/Latches                : 342
+#      XORCY                       : 59
+# FlipFlops/Latches                : 287
 #      FD                          : 27
 #      FDE                         : 44
-#      FDE_1                       : 176
-#      FDR                         : 45
+#      FDE_1                       : 112
+#      FDR                         : 46
 #      FDRE                        : 16
-#      FDRE_1                      : 4
-#      FDRS                        : 12
+#      FDRE_1                      : 11
+#      FDRS                        : 13
 #      FDRSE                       : 5
 #      FDS                         : 13
 # RAMS                             : 16
@@ -929,12 +930,12 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-4 
 
- Number of Slices:                      389  out of    960    40%  
- Number of Slice Flip Flops:            342  out of   1920    17%  
- Number of 4 input LUTs:                731  out of   1920    38%  
-    Number used as logic:               699
+ Number of Slices:                      337  out of    960    35%  
+ Number of Slice Flip Flops:            287  out of   1920    14%  
+ Number of 4 input LUTs:                638  out of   1920    33%  
+    Number used as logic:               606
     Number used as RAMs:                 32
- Number of IOs:                          12
+ Number of IOs:                          28
  Number of bonded IOBs:                  12  out of     83    14%  
  Number of GCLKs:                         1  out of     24     4%  
 
@@ -959,7 +960,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 358   |
+clk                                | BUFGP                  | 303   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -970,9 +971,9 @@ Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 15.192ns (Maximum Frequency: 65.824MHz)
-   Minimum input arrival time before clock: 5.471ns
-   Maximum output required time after clock: 5.140ns
+   Minimum period: 14.974ns (Maximum Frequency: 66.782MHz)
+   Minimum input arrival time before clock: 5.406ns
+   Maximum output required time after clock: 4.745ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -981,34 +982,34 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 15.192ns (frequency: 65.824MHz)
-  Total number of paths / destination ports: 10942 / 803
+  Clock period: 14.974ns (frequency: 66.782MHz)
+  Total number of paths / destination ports: 8937 / 667
 -------------------------------------------------------------------------
-Delay:               7.596ns (Levels of Logic = 4)
+Delay:               7.487ns (Levels of Logic = 4)
   Source:            bip/pm/instruction_14 (FF)
-  Destination:       bip/dm/memory_4_15 (FF)
+  Destination:       bip/dm/memory_3_15 (FF)
   Source Clock:      clk rising
   Destination Clock: clk falling
 
-  Data Path: bip/pm/instruction_14 to bip/dm/memory_4_15
+  Data Path: bip/pm/instruction_14 to bip/dm/memory_3_15
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDE:C->Q              7   0.591   0.883  bip/pm/instruction_14 (bip/pm/instruction_14)
      LUT2_D:I0->O          4   0.704   0.591  bip/cpu/control/decoder/WrPC11 (N6)
-     LUT4_D:I3->O          4   0.704   0.591  bip/cpu/control/decoder/RdRam1 (bip/RdRam)
-     LUT4_D:I3->O          3   0.704   0.535  bip/dm/memory_7_not0001_SW0 (N117)
-     LUT4:I3->O           16   0.704   1.034  bip/dm/memory_5_not0001 (bip/dm/memory_5_not0001)
-     FDE_1:CE                  0.555          bip/dm/memory_5_0
+     LUT4_D:I3->O          2   0.704   0.482  bip/cpu/control/decoder/RdRam1 (bip/RdRam)
+     LUT3_D:I2->O          3   0.704   0.535  bip/dm/memory_3_not0001_SW0 (N101)
+     LUT4:I3->O           16   0.704   1.034  bip/dm/memory_3_not0001 (bip/dm/memory_3_not0001)
+     FDE_1:CE                  0.555          bip/dm/memory_3_0
     ----------------------------------------
-    Total                      7.596ns (3.962ns logic, 3.634ns route)
-                                       (52.2% logic, 47.8% route)
+    Total                      7.487ns (3.962ns logic, 3.525ns route)
+                                       (52.9% logic, 47.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 74 / 73
+  Total number of paths / destination ports: 76 / 75
 -------------------------------------------------------------------------
-Offset:              5.471ns (Levels of Logic = 4)
+Offset:              5.406ns (Levels of Logic = 4)
   Source:            rx (PAD)
   Destination:       uart/rxx/s_0 (FF)
   Destination Clock: clk rising
@@ -1017,46 +1018,46 @@ Offset:              5.471ns (Levels of Logic = 4)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             7   1.218   0.883  rx_IBUF (rx_IBUF)
-     LUT3:I0->O            2   0.704   0.451  uart/rxx/s_mux0000<2>311 (uart/rxx/N29)
-     LUT4:I3->O            1   0.704   0.499  uart/rxx/s_mux0000<3>_SW0 (N40)
+     IBUF:I->O             7   1.218   0.743  rx_IBUF (rx_IBUF)
+     LUT3:I2->O            2   0.704   0.526  uart/rxx/s_mux0000<2>311 (uart/rxx/N29)
+     LUT4:I1->O            1   0.704   0.499  uart/rxx/s_mux0000<3>_SW0 (N34)
      LUT4:I1->O            1   0.704   0.000  uart/rxx/s_mux0000<3> (uart/rxx/s_mux0000<3>)
      FD:D                      0.308          uart/rxx/s_0
     ----------------------------------------
-    Total                      5.471ns (3.638ns logic, 1.833ns route)
-                                       (66.5% logic, 33.5% route)
+    Total                      5.406ns (3.638ns logic, 1.768ns route)
+                                       (67.3% logic, 32.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
   Total number of paths / destination ports: 9 / 9
 -------------------------------------------------------------------------
-Offset:              5.140ns (Levels of Logic = 1)
-  Source:            bip/pm/instruction_1 (FF)
-  Destination:       leds<1> (PAD)
+Offset:              4.745ns (Levels of Logic = 1)
+  Source:            bip/cpu/datapath/acc/outValue_7 (FF)
+  Destination:       leds<7> (PAD)
   Source Clock:      clk rising
 
-  Data Path: bip/pm/instruction_1 to leds<1>
+  Data Path: bip/cpu/datapath/acc/outValue_7 to leds<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q             78   0.591   1.277  bip/pm/instruction_1 (bip/pm/instruction_1)
-     OBUF:I->O                 3.272          leds_1_OBUF (leds<1>)
+     FDRE:C->Q            10   0.591   0.882  bip/cpu/datapath/acc/outValue_7 (bip/cpu/datapath/acc/outValue_7)
+     OBUF:I->O                 3.272          leds_7_OBUF (leds<7>)
     ----------------------------------------
-    Total                      5.140ns (3.863ns logic, 1.277ns route)
-                                       (75.2% logic, 24.8% route)
+    Total                      4.745ns (3.863ns logic, 0.882ns route)
+                                       (81.4% logic, 18.6% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 10.00 secs
-Total CPU time to Xst completion: 9.12 secs
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 8.19 secs
  
 --> 
 
 
-Total memory usage is 540528 kilobytes
+Total memory usage is 539520 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   37 (   0 filtered)
+Number of warnings :   30 (   0 filtered)
 Number of infos    :    9 (   0 filtered)
 

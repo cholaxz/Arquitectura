@@ -32,6 +32,7 @@ module cpu#(
 	output [DATA_LENGTH - 1 : 0]data_to_dm,
 	output [ADDR_LENGTH - 1 : 0]addr_to_pm,
 	output [ADDR_LENGTH - 1 : 0]addr_to_dm,
+	output [DATA_LENGTH - 1 : 0]outPC,
 	output RdRam,
 	output WrRam
     );
@@ -39,9 +40,13 @@ module cpu#(
 wire [OPCODE_LENGTH - 1 : 0]opcode;
 wire [OPERAND_LENGTH - 1 : 0]operand;
 
+
 assign opcode = instruction[INSTRUCTION_LENGTH - 1 : INSTRUCTION_LENGTH - OPCODE_LENGTH]; //Los bits mas significativos
 assign operand = instruction[OPERAND_LENGTH - 1 : 0]; //Los bits menos significativos
 assign addr_to_dm = operand;
+assign outPC[15:11] = 0;
+assign outPC[10:0] = addr_to_pm;
+
 
 wire [1:0] SelA;
 wire SelB;

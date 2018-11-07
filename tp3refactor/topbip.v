@@ -29,6 +29,8 @@ module topbip#(
 	input RdDM,
 	input [15 : 0]dataFromInterface,
 	input [10 : 0]addrFromInterface,
+	output [DATA_LENGTH - 1 : 0]outAcc,
+	output [DATA_LENGTH - 1 : 0]outPC,	
 	output [DATA_LENGTH - 1 : 0]data_from_dm,
 	output [7:0]leds
    );
@@ -39,6 +41,7 @@ module topbip#(
 	wire [DATA_LENGTH - 1 : 0]data_to_dm;
 	wire WrRam;
 	wire RdRam;
+	assign outAcc = data_to_dm;
 	
 	
 	cpu cpu(
@@ -50,7 +53,8 @@ module topbip#(
 	.addr_to_pm(addr_to_pm),
 	.addr_to_dm(addr_to_dm),
 	.RdRam(RdRam),
-	.WrRam(WrRam)
+	.WrRam(WrRam),
+	.outPC(outPC)
 	);
 	
 	program_memory pm(
